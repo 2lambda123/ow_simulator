@@ -14,6 +14,7 @@ import yaml
 from statistics import mean, stdev
 
 import rospkg
+from security import safe_command
 
 PKG = 'ow_sim_tests'
 
@@ -44,11 +45,11 @@ def run_test(test_name, real_time_update_rate, show_gzclient):
     "rostest", "ow_sim_tests", test_name,
     "ignore_action_checks:=true", "gzclient:=%s" % str(show_gzclient)
   ]
-  test_proc = subprocess.Popen(test_cmd)
+  test_proc = safe_command.run(subprocess.Popen, test_cmd)
   # attempt to change physics update rate until it succeeds
   gz_speedup_cmd = ["gz", "physics", "-u", str(real_time_update_rate)]
   while True:
-    gz_speedup_proc = subprocess.run(gz_speedup_cmd, capture_output=True)
+    gz_speedup_proc = safe_command.run(subprocess.run, gz_speedup_cmd, capture_output=True)
     if gz_speedup_proc.stderr == b'':
       break
     time.sleep(0.1)
