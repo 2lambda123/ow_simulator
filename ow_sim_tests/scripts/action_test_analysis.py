@@ -19,6 +19,8 @@ from security import safe_command
 PKG = 'ow_sim_tests'
 
 def get_ros_log_path():
+  """"""
+  
   ENV_ROS_LOG_DIR = 'ROS_LOG_DIR'
   ENV_ROS_HOME    = 'ROS_HOME'
   ENV_HOME        = 'HOME'
@@ -31,6 +33,8 @@ def get_ros_log_path():
     return os.path.join(os.environ[ENV_HOME], '.ros', 'log')
 
 def get_latest_test_log(test_name):
+  """"""
+  
   ros_log = get_ros_log_path()
   file_pattern = '%s-*.log' % test_name
   paths = glob.glob(os.path.join(ros_log, 'latest', file_pattern))
@@ -41,6 +45,8 @@ def get_latest_test_log(test_name):
   return ""
 
 def run_test(test_name, real_time_update_rate, show_gzclient):
+  """"""
+  
   test_cmd = [
     "rostest", "ow_sim_tests", test_name,
     "ignore_action_checks:=true", "gzclient:=%s" % str(show_gzclient)
@@ -56,6 +62,8 @@ def run_test(test_name, real_time_update_rate, show_gzclient):
   test_proc.wait()
 
 def parse_latest_log(test_name, out_results):
+  """"""
+  
   # NOTE: To see from where this syntax originates inspect print_action_start,
   #       print_action_complete, and print_arm_action_final in
   #       action_testing.py
@@ -83,6 +91,8 @@ def parse_latest_log(test_name, out_results):
         out_results[unit][param] += [ float(groups[param]) ]
 
 def generate_statistics(results):
+  """"""
+  
   STATS_FORMAT = {
     'mean': mean,
     'std': stdev,
@@ -98,6 +108,8 @@ def generate_statistics(results):
   return stats
 
 def save_to_yaml(data, output_path):
+  """"""
+  
   # put into correct format for dump method
   with open(output_path, 'w') as output:
     formatted_data = {'test_action_statistics': data}
