@@ -2,7 +2,7 @@ repo_name: 2lambda123/ow_simulator
 report_id: 506f496d76c5d7dd6c596902cb9bae21
 version: 0.1
 repo_type: Public
-timestamp: '2024-01-09T07:57:09+00:00'
+timestamp: '2024-02-29T19:12:57+00:00'
 requested_by: kmdalal
 provider: github
 branch: master
@@ -41,7 +41,7 @@ tools:
   detection_source_url: https://github.com/2lambda123/ow_simulator
   detection_source: Repo Metadata
 - name: CMake
-  description: 'An open-source system that manages the build process '
+  description: An open-source system that manages the build process
   website_url: http://www.cmake.org/
   open_source: false
   hosted_saas: false
